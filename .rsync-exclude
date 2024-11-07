@@ -5,6 +5,7 @@
 **/node_modules
 **/public/api/
 **/public/favico.icon
+**/public/.htaccess
 **/src/
 **/vendor/
 /*.*
