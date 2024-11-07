@@ -5,7 +5,7 @@
 /public/api
 /src/
 /vendor/
-/*
-/.*
+*.*
+.*
 /constants
 
