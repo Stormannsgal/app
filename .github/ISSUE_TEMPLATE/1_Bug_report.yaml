@@ -1,0 +1,42 @@
+name: 🐛 Bug Report
+description: Issues für einen Bug erstellen
+labels: [ Bug ]
+
+body:
+  - type: input
+    id: affected-versions
+    attributes:
+      label: Betroffene Version(en)
+      placeholder: x.y.z
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Beschreibung
+      description: Eine klare und prägnante Beschreibung des Problems
+    validations:
+      required: true
+  - type: textarea
+    id: how-to-reproduce
+    attributes:
+      label: Wie reproduziert man das Problem
+      description: |
+        ⚠️  Dies ist der wichtigste Teil des Berichts ⚠️
+        Ohne eine Möglichkeit, Ihr Problem zu reproduzieren, haben wir kaum eine Chance, Ihnen zu helfen und an einer Lösung zu arbeiten.
+        Bitte nehmen Sie sich die Zeit, uns einige Codes und/oder Konfigurationen zu zeigen, die andere benötigen, um das Problem leicht zu reproduzieren.
+    validations:
+      required: true
+  - type: textarea
+    id: possible-solution
+    attributes:
+      label: Mögliche Lösung
+      description: |
+        Optional: nur wenn Sie Vorschläge zur Behebung/Grund für den Fehler haben
+        Zögern Sie nicht, einen Pull-Request mit Ihrer Lösung zu erstellen, so erhalten Sie schneller Feedback.
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Zusätzlicher Kontext
+      description: |
+        Optional: weitere Informationen über das Problem: Protokollmeldungen, Screenshots usw.

@@ -1,0 +1,17 @@
+name: 🚀 Feature Request
+description: Ideen für neue Funktionen und Verbesserungen
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Beschreibung
+      description: Eine klare und prägnante Beschreibung der neuen Funktion
+    validations:
+      required: true
+  - type: textarea
+    id: example
+    attributes:
+      label: Beispiel
+      description: |
+        Ein einfaches Beispiel für die neue Funktion in Aktion (mit PHP-Code, YAML-Konfiguration usw.)
+        Wenn die neue Funktion eine bestehende Funktion ändert, fügen Sie einen einfachen Vorher/Nachher-Vergleich ein.
