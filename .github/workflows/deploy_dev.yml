@@ -24,7 +24,7 @@ jobs:
         run: npm run build
 
       - name: move files
-        run: mv -r ./dist/* ./public/
+        run: mv -r /dist/* /public/
 
       - name: rsync deployments
         uses: burnett01/rsync-deployments@7.0.1
