@@ -1,1 +1,8 @@
-/api/
+/.github/
+/dist/
+/node_modules
+/public/api
+/src/
+/*
+/.*
+
