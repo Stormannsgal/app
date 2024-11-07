@@ -4,6 +4,7 @@
 **/dist/
 **/node_modules
 **/public/api/
+**/public/favico.icon
 **/src/
 **/vendor/
 /*.*
