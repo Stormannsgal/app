@@ -5,8 +5,7 @@
   <nav class="navbar navbar-expand-sm navbar-dark">
     <div class="container-fluid">
       <router-link :to="{name: 'home'}" class="navbar-brand"><i class="bi bi-house-door-fill h2"></i></router-link>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-              aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -24,9 +23,7 @@
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li><a class="dropdown-item" href="#">Action</a></li>
               <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
+              <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="#">Something else here</a></li>
             </ul>
           </li>
@@ -43,7 +40,6 @@
 .navbar-dark {
   background-color: #192339;
 }
-
 .dropdown-menu {
   background-color: #202e4b;
 }
@@ -51,7 +47,6 @@
 .dropdown-menu > li > a {
   color: lightgray;
 }
-
 .dropdown-menu > li > a:hover {
   color: white;
   background-color: #28395c;
