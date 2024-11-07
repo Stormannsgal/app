@@ -5,6 +5,11 @@ import vue from '@vitejs/plugin-vue'
 
 // https://vite.dev/config/
 export default defineConfig({
+  root: './',
+  build: {
+    outDir: 'public',
+  },
+  publicDir: 'assets',
   plugins: [
     vue(),
   ],

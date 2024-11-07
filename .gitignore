@@ -30,3 +30,6 @@ coverage
 *.tsbuildinfo
 
 .env
+
+/public/assets
+/public/index.html
