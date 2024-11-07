@@ -23,6 +23,10 @@ const router = createRouter({
               component: () => import('app/views/404NotFoundView.vue'),
             },
           ]
+        },
+        {
+          path: '/',
+          redirect: '/app'
         }
       ]
     }
