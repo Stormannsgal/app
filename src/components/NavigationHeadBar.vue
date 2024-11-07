@@ -4,7 +4,7 @@
 <template>
   <nav class="navbar navbar-expand-sm navbar-dark">
     <div class="container-fluid">
-      <router-link :to="{name: 'app_home'}" class="navbar-brand"><i class="bi bi-house-door-fill h2"></i></router-link>
+      <router-link :to="{name: 'home'}" class="navbar-brand"><i class="bi bi-house-door-fill h2"></i></router-link>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
               aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -12,7 +12,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-2 mb-sm-0">
           <li class="nav-item">
-            <router-link :to="{name: 'app_home'}" class="nav-link">Home</router-link>
+            <router-link :to="{name: 'home'}" class="nav-link" aria-current="page">Home</router-link>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Link</a>
@@ -31,7 +31,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <router-link :to="{name: 'app_login'}" class="nav-link"><i class="bi bi-person-circle"></i> Anmelden</router-link>
+            <a class="nav-link" href="#"><i class="bi bi-person-circle"></i> Login</a>
           </li>
         </ul>
       </div>
@@ -39,14 +39,7 @@
   </nav>
 </template>
 
-<style scoped>
-a:link, a:visited {
-  text-decoration: none;
-}
-
-a:hover, a:active {
-  text-decoration: none;
-}
+<style>
 .navbar-dark {
   background-color: #192339;
 }
@@ -55,11 +48,11 @@ a:hover, a:active {
   background-color: #202e4b;
 }
 
-.dropdown-menu > li > a:link, a:visited {
+.dropdown-menu > li > a {
   color: lightgray;
 }
 
-.dropdown-menu > li > a:hover, a:active {
+.dropdown-menu > li > a:hover {
   color: white;
   background-color: #28395c;
 }
