@@ -13,14 +13,7 @@ import NavigationHeadBar from "@/components/NavigationHeadBar.vue";
 </template>
 
 <style>
-@font-face {
-  font-family: 'Lato Regular';
-  src: url(@/assets/fonts/Lato-Regular.ttf);
-}
 body {
-  background-color: #111827;
-  font-family: 'Lato Regular';
-  font-style: normal;
-  font-weight: 300;
+  background-color: #030712;
 }
 </style>
