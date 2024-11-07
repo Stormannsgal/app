@@ -1,8 +1,11 @@
 /.github/
+/data/
 /dist/
 /node_modules
 /public/api
 /src/
+/vendor/
 /*
 /.*
+/constants
 
