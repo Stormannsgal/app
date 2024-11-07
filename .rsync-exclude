@@ -3,7 +3,7 @@
 /data/
 /dist/
 /node_modules
-/public/api
+/public/api/*
 /src/
 /vendor/
 *.*
