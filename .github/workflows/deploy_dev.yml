@@ -31,7 +31,7 @@ jobs:
         with:
           switches: -avz --no-o --no-g --no-perms --no-t --omit-dir-times --delete --exclude-from='.rsync-exclude'
           path: /
-          remote_path: ${{ secrets.DEPLOY_PATH_CLIENT_VUEJS_DEV }}
+          remote_path: ${{ secrets.DEPLOY_PATH_API_DEV }}
           remote_host: ${{ secrets.DEPLOY_HOST }}
           remote_port: ${{ secrets.DEPLOY_PORT }}
           remote_user: ${{ secrets.DEPLOY_USER }}
