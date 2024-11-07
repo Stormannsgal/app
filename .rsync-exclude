@@ -6,7 +6,7 @@
 **/public/api/
 **/src/
 **/vendor/
-*.*
-.*
+/*.*
+/.*
 /constants
 LICENSE
