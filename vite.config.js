@@ -9,6 +9,7 @@ export default defineConfig({
   root: './',
   build: {
     outDir: 'public',
+    sourcemap: 'hidden',
   },
   publicDir: 'assets',
   plugins: [
