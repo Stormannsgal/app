@@ -38,29 +38,3 @@
     </div>
   </nav>
 </template>
-
-<style scoped>
-a:link, a:visited {
-  text-decoration: none;
-}
-
-a:hover, a:active {
-  text-decoration: none;
-}
-.navbar-dark {
-  background-color: #192339;
-}
-
-.dropdown-menu {
-  background-color: #202e4b;
-}
-
-.dropdown-menu > li > a:link, a:visited {
-  color: lightgray;
-}
-
-.dropdown-menu > li > a:hover, a:active {
-  color: white;
-  background-color: #28395c;
-}
-</style>

@@ -15,6 +15,3 @@ import {RouterView} from "vue-router";
   <footer>
   </footer>
 </template>
-
-<style lang="scss">
-</style>

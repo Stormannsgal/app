@@ -1,29 +1,77 @@
 @font-face {
-  font-family: 'Lato Regular';
-  src: url(app/assets/fonts/Lato-Regular.ttf);
+    font-family: 'Lato Regular';
+    src: url(fonts/Lato-Regular.ttf);
 }
+
 body {
-  color: #94a3b8;
-  background-color: #090d15;
-  font-family: 'Lato Regular';
-  font-style: normal;
-  font-weight: 300;
+    color: #94a3b8;
+    background-color: #090d15;
+    font-family: 'Lato Regular', sans-serif;
+    font-style: normal;
+    font-weight: 300;
 }
+
 a:link, a:visited {
-  color: lavender;
-  text-decoration: underline cornflowerblue;
+    color: lavender;
+    text-decoration: underline cornflowerblue;
 }
 
 a:hover, a:active {
-  color: white;
-  text-decoration-thickness: 2px;
+    color: white;
+    text-decoration-thickness: 2px;
+}
+
+.navbar-nav > li > a:link, a:visited {
+    text-decoration: none;
+}
+
+.navbar-nav > li > a:hover, a:active {
+    text-decoration: none;
+}
+
+.navbar-dark {
+    background-color: #192339;
+}
+
+.dropdown-menu {
+    background-color: #202e4b;
+}
+
+.dropdown-menu > li > a:link, a:visited {
+    text-decoration: none;
+    color: lightgray;
+}
+
+.dropdown-menu > li > a:hover, a:active {
+    color: white;
+    background-color: #28395c;
 }
 
 .form-control, .form-control:focus, .form-check-input {
-  background-color: #abbada;
+    background-color: #abbada;
 }
 
 .form-control:focus, .form-check-input:focus {
-  border-color: #8aaefb;
-  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 8px #8acafb;
+    border-color: #8aaefb;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px #8acafb;
+}
+
+.login-form-container {
+    justify-content: center;
+    width: 100%;
+}
+
+.login-form-content {
+    margin-top: 10px;
+    padding: 10px;
+    justify-content: center;
+    max-width: 95%;
+    min-width: 25%;
+    background-color: #111827;
+    border-radius: 10px;
+    border: gray solid thin;
+}
+
+.login-form-content-inner {
+    padding: 20px;
 }

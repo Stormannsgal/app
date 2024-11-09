@@ -37,26 +37,3 @@
     </div>
   </div>
 </template>
-
-<style scoped>
-.login-form-container {
-
-  justify-content: center;
-  width: 100%;
-}
-
-.login-form-content {
-  margin-top: 10px;
-  padding: 10px;
-  justify-content: center;
-  max-width: 95%;
-  min-width: 25%;
-  background-color: #111827;
-  border-radius: 10px;
-  border: gray solid thin;
-}
-
-.login-form-content-inner {
-  padding: 20px;
-}
-</style>
