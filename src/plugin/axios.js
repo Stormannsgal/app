@@ -1,12 +1,13 @@
 import axios from "axios";
 import router from "@/router";
-
+import {useTokenStore} from "@/stores/TokenStore.js";
 
 axios.defaults.baseURL = import.meta.env.VITE_API_BASE_URL;
 axios.defaults.withCredentials = true;
 
 axios.interceptors.request.use((config) => {
-  const accessToken = localStorage.getItem("accessToken");
+  const tokenStore = useTokenStore()
+  const accessToken = tokenStore.getAccessToken
 
   if (accessToken !== null) {
     config.headers.Authorization = `${accessToken}`;
