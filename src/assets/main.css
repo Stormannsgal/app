@@ -21,11 +21,11 @@ a:hover, a:active {
     text-decoration-thickness: 2px;
 }
 
-.navbar-nav > li > a:link, a:visited {
+.navbar-nav > li > a:link, .navbar-nav > li > a:visited {
     text-decoration: none;
 }
 
-.navbar-nav > li > a:hover, a:active {
+.navbar-nav > li > a:hover, .navbar-nav > li > a:active {
     text-decoration: none;
 }
 
@@ -37,12 +37,12 @@ a:hover, a:active {
     background-color: #202e4b;
 }
 
-.dropdown-menu > li > a:link, a:visited {
+.dropdown-menu > li > a:link, .dropdown-menu > li > a:visited {
     text-decoration: none;
     color: lightgray;
 }
 
-.dropdown-menu > li > a:hover, a:active {
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:active {
     color: white;
     background-color: #28395c;
 }
