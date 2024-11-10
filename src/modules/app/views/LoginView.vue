@@ -2,7 +2,7 @@
 import axios from "axios";
 async function login() {
   await axios
-      .get("http://localhost/api/ping")
+      .get("/api/ping")
       .then((response) => {
 
       })
