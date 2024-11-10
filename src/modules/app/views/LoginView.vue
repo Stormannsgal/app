@@ -1,12 +1,22 @@
 <script setup>
+import axios from "axios";
+async function login() {
+  await axios
+      .get("http://localhost/api/ping")
+      .then((response) => {
 
+      })
+      .catch(() => {
+
+      });
+}
 </script>
 
 <template>
   <div class="d-flex p-3 login-form-container">
     <div class="login-form-content">
       <div class="login-form-content-inner">
-        <form>
+        <form @submit.prevent="login">
           <div class="pb-4">
             <label for="email" class="form-label">E-Mail</label>
             <input type="email" id="email" class="form-control" placeholder="name@example.com">
@@ -27,7 +37,7 @@
             </div>
           </div>
           <div class="d-grid gap-1 mb-4">
-          <button type="button" class="btn btn-primary btn-block ">Anmelden</button>
+          <button type="submit" class="btn btn-primary btn-block ">Anmelden</button>
           </div>
           <div class="text-center">
             <p>Noch keinen Account? <a href="#!">Registrieren</a></p>

@@ -5,7 +5,7 @@ import {useTokenStore} from "@/stores/TokenStore.js";
 axios.defaults.baseURL = import.meta.env.VITE_API_BASE_URL;
 axios.defaults.withCredentials = true;
 
-const clientID = localStorage.getItem('clientID')
+const clientID = localStorage.getItem('uniqueID')
 
 if (clientID) {
   axios.defaults.headers.common['x-ident'] = `${clientID}`
