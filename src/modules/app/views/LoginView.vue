@@ -1,35 +1,62 @@
 <template>
-  <div class="d-flex p-3 login-form-container">
+  <div class="flex login-form-container">
     <div class="login-form-content">
       <div class="login-form-content-inner">
         <form v-on:submit.prevent="submitlogin">
-          <div v-show="validate" class="pb-4">
-            <span class="text-danger">{{ validate }}</span>
+          <div class=" text-white text-center">
+            <h1>Willkommen</h1>
+            <p>Noch keinen Account? <a href="#!">Hier anlegen!</a></p>
           </div>
           <div class="pb-4">
-            <label for="email" class="form-label">E-Mail</label>
-            <input type="email" id="email" class="form-control" v-model="payload.email" name="email" placeholder="name@example.com">
+            <InputGroup>
+              <InputGroupAddon>
+                <i class="pi pi-at"></i>
+              </InputGroupAddon>
+              <FloatLabel variant="on">
+                <InputText id="email" class="inputTextWidth" size="small" v-model="payload.email" autocomplete="on" required="true" :invalid="validate!==null"/>
+                <label for="email">E-Mail</label>
+              </FloatLabel>
+            </InputGroup>
+            <Message v-if="validate!==null" size="small" variant="simple" severity="error" class="fs-small">Bitte die Eingabe überprüfen</Message>
           </div>
           <div class="pb-4">
-            <label for="password" class="form-label">Passwort</label>
-            <input type="password" id="password" class="form-control" v-model="payload.password" name="password" placeholder="Passwort">
+            <InputGroup>
+              <InputGroupAddon>
+                <i class="pi pi-lock"></i>
+              </InputGroupAddon>
+              <FloatLabel variant="on">
+                <Password id="password" class="inputTextWidth" size="small" v-model="payload.password" :invalid="validate!==null">
+                  <template #header>
+                    <div class="font-semibold text-xm mb-4">Eingabe vom Passwort</div>
+                    <hr>
+                  </template>
+                  <template #content>
+                    <div class="font-semibold text-xm mb-4">Bitte beachten</div>
+                  </template>
+                  <template #footer>
+                    <Divider />
+                    <ul class="pl-2 ml-2 my-0 leading-normal">
+                      <li>Sage keinem anderen dein Passwort</li>
+                      <li>Wir werden dich nie nach deinem Passwort fragen!</li>
+                    </ul>
+                  </template>
+                </Password>
+                <label for="password">Passwort</label>
+              </FloatLabel>
+            </InputGroup>
+            <Message v-if="validate!==null" size="small" variant="simple" severity="error" class="fs-small">Bitte die Eingabe überprüfen</Message>
           </div>
-          <div class="row mb-4">
-            <div class="col d-flex justify-content-center">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="remember_me"/>
-                <label class="form-check-label" for="remember_me">Angemeldet bleiben</label>
+            <div class="flex flex-row pb-4 gap-6">
+              <div class="flex">
+                <Checkbox class="mr-2" binary />
+                <label for="remember_me">Angemeldet bleiben</label>
+              </div>
+              <div class="flex" >
+                <a href="#!">Passwort vergessen?</a>
               </div>
             </div>
-            <div class="col">
-              <a href="#!">Passwort vergessen?</a>
-            </div>
-          </div>
-          <div class="d-grid gap-1 mb-4">
-            <button class="btn btn-primary btn-block ">Anmelden</button>
-          </div>
-          <div class="text-center">
-            <p>Noch keinen Account? <a href="#!">Registrieren</a></p>
+          <div>
+            <Button class="submitButtonWith" label="Anmelden" icon="pi pi-user" type="submit"/>
           </div>
         </form>
       </div>
@@ -42,6 +69,7 @@ import axios from "axios";
 import {ref, reactive} from "vue";
 import {useToast} from "vue-toastification";
 import {useRouter} from "vue-router";
+import Password from 'primevue/password';
 
 const router = useRouter();
 const toast = useToast();
@@ -83,3 +111,37 @@ async function submitlogin() {
 
 }
 </script>
+
+<style scoped>
+.fs-small {
+  font-size: 0.875rem;
+}
+
+.inputTextWidth {
+  width: 100%;
+}
+
+.submitButtonWith {
+  width: 100%;
+}
+
+.login-form-container {
+  justify-content: center;
+  width: 100%;
+}
+
+.login-form-content {
+  margin-top: 10px;
+  padding: 10px;
+  justify-content: center;
+  max-width: 95%;
+  min-width: 25%;
+  background-color: #111827;
+  border-radius: 10px;
+  border: gray solid thin;
+}
+
+.login-form-content-inner {
+  padding: 20px;
+}
+</style>

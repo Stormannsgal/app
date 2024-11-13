@@ -55,23 +55,3 @@ a:hover, a:active {
     border-color: #8aaefb;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px #8acafb;
 }
-
-.login-form-container {
-    justify-content: center;
-    width: 100%;
-}
-
-.login-form-content {
-    margin-top: 10px;
-    padding: 10px;
-    justify-content: center;
-    max-width: 95%;
-    min-width: 25%;
-    background-color: #111827;
-    border-radius: 10px;
-    border: gray solid thin;
-}
-
-.login-form-content-inner {
-    padding: 20px;
-}

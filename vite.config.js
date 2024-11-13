@@ -1,5 +1,6 @@
 import { fileURLToPath, URL } from 'node:url'
 import viteCompression from 'vite-plugin-compression2';
+import vueDevTools from 'vite-plugin-vue-devtools'
 
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
@@ -15,6 +16,7 @@ export default defineConfig({
   plugins: [
     vue(),
     viteCompression({algorithm: 'gzip'}),
+    vueDevTools(),
   ],
   resolve: {
     alias: {
