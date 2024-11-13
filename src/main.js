@@ -1,9 +1,7 @@
 import '/node_modules/primeflex/primeflex.css'
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
-import Toast from "vue-toastification";
 
-import 'vue-toastification/dist/index.css'
 import '@/assets/reset.css'
 import '@/assets/toast.css';
 import '@/assets/main.css'
@@ -11,6 +9,7 @@ import '@/assets/main.css'
 import App from '@/App.vue'
 import router from '@/router'
 import '@/plugin/axios.js';
+import ToastService from 'primevue/toastservice';
 
 import PrimeVue from 'primevue/config';
 import Aura from '@primevue/themes/aura';
@@ -26,10 +25,7 @@ import {definePreset} from "@primevue/themes";
 
 
 const app = createApp(App)
-const options = {
-  toastClassName: 'custom',
-  bodyClassName: ['custom'],
-};
+
 const stylePreset = definePreset(Aura, {
   semantic: {
     primary: {
@@ -87,5 +83,5 @@ app.component('Message', Message);
 
 app.use(createPinia())
 app.use(router)
-app.use(Toast, options);
+app.use(ToastService)
 app.mount('#app')

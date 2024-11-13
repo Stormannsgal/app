@@ -12,46 +12,11 @@ body {
 }
 
 a:link, a:visited {
-    color: lavender;
-    text-decoration: underline cornflowerblue;
+    color: cornflowerblue;
+    text-decoration: none;
 }
 
 a:hover, a:active {
-    color: white;
-    text-decoration-thickness: 2px;
-}
+    color: #92b4f2;
 
-.navbar-nav > li > a:link, .navbar-nav > li > a:visited {
-    text-decoration: none;
-}
-
-.navbar-nav > li > a:hover, .navbar-nav > li > a:active {
-    text-decoration: none;
-}
-
-.navbar-dark {
-    background-color: #192339;
-}
-
-.dropdown-menu {
-    background-color: #202e4b;
-}
-
-.dropdown-menu > li > a:link, .dropdown-menu > li > a:visited {
-    text-decoration: none;
-    color: lightgray;
-}
-
-.dropdown-menu > li > a:hover, .dropdown-menu > li > a:active {
-    color: white;
-    background-color: #28395c;
-}
-
-.form-control, .form-control:focus, .form-check-input {
-    background-color: #abbada;
-}
-
-.form-control:focus, .form-check-input:focus {
-    border-color: #8aaefb;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px #8acafb;
 }

@@ -3,6 +3,7 @@
     <div class="login-form-content">
       <div class="login-form-content-inner">
         <form v-on:submit.prevent="submitlogin">
+          <Toast/>
           <div class=" text-white text-center">
             <h1>Willkommen</h1>
             <p>Noch keinen Account? <a href="#!">Hier anlegen!</a></p>
@@ -34,7 +35,6 @@
                     <div class="font-semibold text-xm mb-4">Bitte beachten</div>
                   </template>
                   <template #footer>
-                    <Divider />
                     <ul class="pl-2 ml-2 my-0 leading-normal">
                       <li>Sage keinem anderen dein Passwort</li>
                       <li>Wir werden dich nie nach deinem Passwort fragen!</li>
@@ -46,15 +46,15 @@
             </InputGroup>
             <Message v-if="validate!==null" size="small" variant="simple" severity="error" class="fs-small">Bitte die Eingabe überprüfen</Message>
           </div>
-            <div class="flex flex-row pb-4 gap-6">
-              <div class="flex">
-                <Checkbox class="mr-2" binary />
-                <label for="remember_me">Angemeldet bleiben</label>
-              </div>
-              <div class="flex" >
-                <a href="#!">Passwort vergessen?</a>
-              </div>
+          <div class="flex flex-row pb-4 gap-6">
+            <div class="flex">
+              <Checkbox class="mr-2" binary/>
+              <label for="remember_me">Angemeldet bleiben</label>
             </div>
+            <div class="flex">
+              <a href="#!">Passwort vergessen?</a>
+            </div>
+          </div>
           <div>
             <Button class="submitButtonWith" label="Anmelden" icon="pi pi-user" type="submit"/>
           </div>
@@ -67,12 +67,14 @@
 <script setup>
 import axios from "axios";
 import {ref, reactive} from "vue";
-import {useToast} from "vue-toastification";
+import Toast from 'primevue/toast';
+import {useToast} from "primevue/usetoast";
 import {useRouter} from "vue-router";
 import Password from 'primevue/password';
 
 const router = useRouter();
 const toast = useToast();
+
 const validate = ref(null);
 const payload = reactive({
   email: '',
@@ -85,7 +87,6 @@ function validateForm() {
   if (!regex.test(payload.email) || payload.password.length < 6 || payload.password.length > 255) {
     validate.value = 'E-Mail/Password fehlerhaft';
   }
-
   return validate.value === null;
 }
 
@@ -97,18 +98,18 @@ async function submitlogin() {
       .post("/api/account/authentication", payload,)
       .then((response) => {
         if (response && response.status === 200) {
-          toast.success("Anmeldung erfolgreich", {timeout: 2000});
           router.back();
         }
       })
       .catch((error) => {
-        if (error.response.status === 400 || error.response.status === 403) {
-          validate.value = 'E-Mail/Password fehlerhaft';
-        } else {
-          toast.error("Unbekannter Fehler", {timeout: 2000});
-        }
-      });
-
+            if (error.response && (error.response.status === 400 || error.response.status === 403)) {
+              validate.value = 'E-Mail/Password fehlerhaft';
+              toast.add({severity: 'error', summary: 'Fehler bei der Anmeldung', detail: 'Eingegebene Daten prüfen', life: 3000});
+            } else {
+              toast.add({severity: 'error', summary: 'Fehler bei der Anmeldung', detail: 'Unbekannter Fehler', life: 3000});
+            }
+          }
+      );
 }
 </script>
 
