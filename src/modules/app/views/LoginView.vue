@@ -1,9 +1,10 @@
 <template>
-  <div class="flex login-form-container">
-    <div class="login-form-content">
+  <div class="flex justify-content-center login-form-container">
+    <div class="flex justify-content-center login-form-content">
       <div class="login-form-content-inner">
-        <form v-on:submit.prevent="submitlogin">
-          <Toast/>
+        <Toast/>
+
+        <Form v-slot="$form" :payload :resolver @submit="onFormSubmit">
           <div class=" text-white text-center">
             <h1>Willkommen</h1>
             <p>Noch keinen Account? <a href="#!">Hier anlegen!</a></p>
@@ -14,11 +15,11 @@
                 <i class="pi pi-at"></i>
               </InputGroupAddon>
               <FloatLabel variant="on">
-                <InputText id="email" class="inputTextWidth" size="small" v-model="payload.email" autocomplete="on" required="true" :invalid="validate!==null"/>
+                <InputText name="email" type="email" class="inputTextWidth" size="small" fluid />
                 <label for="email">E-Mail</label>
               </FloatLabel>
             </InputGroup>
-            <Message v-if="validate!==null" size="small" variant="simple" severity="error" class="fs-small">Bitte die Eingabe überprüfen</Message>
+            <Message v-if="$form.email?.invalid" severity="error" size="small" variant="simple">{{ $form.email.error?.message }}</Message>
           </div>
           <div class="pb-4">
             <InputGroup>
@@ -26,7 +27,7 @@
                 <i class="pi pi-lock"></i>
               </InputGroupAddon>
               <FloatLabel variant="on">
-                <Password id="password" class="inputTextWidth" size="small" v-model="payload.password" :invalid="validate!==null">
+                <Password name="password" class="inputTextWidth" size="small" toggleMask fluid>
                   <template #header>
                     <div class="font-semibold text-xm mb-4">Eingabe vom Passwort</div>
                     <hr>
@@ -44,7 +45,7 @@
                 <label for="password">Passwort</label>
               </FloatLabel>
             </InputGroup>
-            <Message v-if="validate!==null" size="small" variant="simple" severity="error" class="fs-small">Bitte die Eingabe überprüfen</Message>
+            <Message v-if="$form.password?.invalid" severity="error" size="small" variant="simple">{{ $form.password.error?.message }}</Message>
           </div>
           <div class="flex flex-row pb-4 gap-6">
             <div class="flex">
@@ -56,9 +57,9 @@
             </div>
           </div>
           <div>
-            <Button class="submitButtonWith" label="Anmelden" icon="pi pi-user" type="submit"/>
+            <Button type="submit" class="submitButtonWith" label="Anmelden" icon="pi pi-user"/>
           </div>
-        </form>
+        </Form>
       </div>
     </div>
   </div>
@@ -66,8 +67,7 @@
 
 <script setup>
 import axios from "axios";
-import {ref, reactive} from "vue";
-import Toast from 'primevue/toast';
+import {reactive} from "vue";
 import {useToast} from "primevue/usetoast";
 import {useRouter} from "vue-router";
 import Password from 'primevue/password';
@@ -75,25 +75,35 @@ import Password from 'primevue/password';
 const router = useRouter();
 const toast = useToast();
 
-const validate = ref(null);
 const payload = reactive({
   email: '',
   password: '',
 });
 
-function validateForm() {
-  validate.value = null;
+const resolver = ({values}) => {
+  const errors = {};
   const regex = /^[^@]+@\w+(\.\w+)+\w$/;
-  if (!regex.test(payload.email) || payload.password.length < 6 || payload.password.length > 255) {
-    validate.value = 'E-Mail/Password fehlerhaft';
+
+  if (!values.email || !regex.test(values.email)) {
+    errors.email = [{message: 'Bitte eine gültige E-Mail eingeben.'}];
   }
-  return validate.value === null;
-}
+
+  if (!values.password || values.password.length < 6 || values.password.length > 255) {
+    errors.password = [{message: 'Bitte das aktuell gültige Password eingeben.'}];
+  }
+
+  return {
+    errors
+  };
+};
+
+const onFormSubmit = ({valid}) => {
+  if (valid) {
+    !submitlogin();
+  }
+};
 
 async function submitlogin() {
-  if (!validateForm()) {
-    return;
-  }
   await axios
       .post("/api/account/authentication", payload,)
       .then((response) => {
@@ -103,10 +113,9 @@ async function submitlogin() {
       })
       .catch((error) => {
             if (error.response && (error.response.status === 400 || error.response.status === 403)) {
-              validate.value = 'E-Mail/Password fehlerhaft';
-              toast.add({severity: 'error', summary: 'Fehler bei der Anmeldung', detail: 'Eingegebene Daten prüfen', life: 3000});
+              toast.add({severity: 'error', summary: 'Fehler bei der Anmeldung', detail: 'Eingegebene Daten prüfen', life: 5000});
             } else {
-              toast.add({severity: 'error', summary: 'Fehler bei der Anmeldung', detail: 'Unbekannter Fehler', life: 3000});
+              toast.add({severity: 'error', summary: 'Fehler bei der Anmeldung', detail: 'Unbekannter Fehler', life: 5000});
             }
           }
       );
@@ -127,14 +136,12 @@ async function submitlogin() {
 }
 
 .login-form-container {
-  justify-content: center;
   width: 100%;
 }
 
 .login-form-content {
   margin-top: 10px;
   padding: 10px;
-  justify-content: center;
   max-width: 95%;
   min-width: 25%;
   background-color: #111827;

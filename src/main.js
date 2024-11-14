@@ -10,9 +10,11 @@ import App from '@/App.vue'
 import router from '@/router'
 import '@/plugin/axios.js';
 import ToastService from 'primevue/toastservice';
+import Toast from 'primevue/toast';
 
 import PrimeVue from 'primevue/config';
-import Aura from '@primevue/themes/aura';
+import Lara from '@primevue/themes/lara'
+
 import 'primeicons/primeicons.css'
 import Button from 'primevue/button';
 import InputText from 'primevue/inputtext';
@@ -26,7 +28,7 @@ import {definePreset} from "@primevue/themes";
 
 const app = createApp(App)
 
-const stylePreset = definePreset(Aura, {
+const stylePreset = definePreset(Lara, {
   semantic: {
     primary: {
       50: '{blue.50}',
@@ -80,6 +82,7 @@ app.component('Checkbox', Checkbox);
 app.component('InputGroup', InputGroup);
 app.component('InputGroupAddon', InputGroupAddon);
 app.component('Message', Message);
+app.component('Toast', Toast);
 
 app.use(createPinia())
 app.use(router)

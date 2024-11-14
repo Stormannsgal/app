@@ -31,7 +31,7 @@ const items = ref([
     label: 'Testeintrag',
     icon: 'pi pi-spinner',
     command: () => {
-      router.push({name: 'app_home'});
+      router.push({name: 'app_test'});
     }
   },
 ]);
@@ -45,6 +45,7 @@ const account = ref([
     }
   }
 ])
+
 const save = () => {
   router.push({name: 'app_login'})
 };
