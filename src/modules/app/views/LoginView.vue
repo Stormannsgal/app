@@ -15,7 +15,7 @@
                 <i class="pi pi-at"></i>
               </InputGroupAddon>
               <FloatLabel variant="on">
-                <InputText name="email" type="email" class="inputTextWidth" size="small" fluid />
+                <InputText v-model="payload.email" name="email" type="email" class="inputTextWidth" size="small" fluid/>
                 <label for="email">E-Mail</label>
               </FloatLabel>
             </InputGroup>
@@ -27,7 +27,7 @@
                 <i class="pi pi-lock"></i>
               </InputGroupAddon>
               <FloatLabel variant="on">
-                <Password name="password" class="inputTextWidth" size="small" toggleMask fluid>
+                <Password v-model="payload.password" name="password" class="inputTextWidth" size="small" toggleMask fluid>
                   <template #header>
                     <div class="font-semibold text-xm mb-4">Eingabe vom Passwort</div>
                     <hr>
@@ -49,8 +49,8 @@
           </div>
           <div class="flex flex-row pb-4 gap-6">
             <div class="flex">
-              <Checkbox class="mr-2" binary/>
-              <label for="remember_me">Angemeldet bleiben</label>
+              <Checkbox v-model="rememberMe" name="rememberMe" class="mr-2" binary/>
+              <label for="rememberMe">Angemeldet bleiben</label>
             </div>
             <div class="flex">
               <a href="#!">Passwort vergessen?</a>
@@ -67,18 +67,22 @@
 
 <script setup>
 import axios from "axios";
-import {reactive} from "vue";
+import {ref, reactive} from "vue";
 import {useToast} from "primevue/usetoast";
 import {useRouter} from "vue-router";
-import Password from 'primevue/password';
+import {InputGroup, InputGroupAddon, FloatLabel, InputText, Message, Password, Checkbox, Button} from "primevue";
+import {useClientIDStore} from "@/stores/ClientIDStore.js";
 
 const router = useRouter();
 const toast = useToast();
+const clientIDStore = useClientIDStore();
 
 const payload = reactive({
   email: '',
   password: '',
 });
+
+const rememberMe = ref(false);
 
 const resolver = ({values}) => {
   const errors = {};
@@ -88,7 +92,7 @@ const resolver = ({values}) => {
     errors.email = [{message: 'Bitte eine gültige E-Mail eingeben.'}];
   }
 
-  if (!values.password || values.password.length < 6 || values.password.length > 255) {
+  if (!values.password || (values.password.length < 6 || values.password.length > 255)) {
     errors.password = [{message: 'Bitte das aktuell gültige Password eingeben.'}];
   }
 
@@ -99,7 +103,7 @@ const resolver = ({values}) => {
 
 const onFormSubmit = ({valid}) => {
   if (valid) {
-    !submitlogin();
+    submitlogin();
   }
 };
 
@@ -107,12 +111,16 @@ async function submitlogin() {
   await axios
       .post("/api/account/authentication", payload,)
       .then((response) => {
-        if (response && response.status === 200) {
+        if (response?.status === 200) {
+          if (rememberMe.value) {
+            clientIDStore.persistClientID();
+          }
+          toast.add({severity: 'success', summary: 'Willkommen', detail: 'Anmeldung erfolgreich', life: 3000});
           router.back();
         }
       })
       .catch((error) => {
-            if (error.response && (error.response.status === 400 || error.response.status === 403)) {
+            if (error?.response.status === 400 || error?.response.status === 403) {
               toast.add({severity: 'error', summary: 'Fehler bei der Anmeldung', detail: 'Eingegebene Daten prüfen', life: 5000});
             } else {
               toast.add({severity: 'error', summary: 'Fehler bei der Anmeldung', detail: 'Unbekannter Fehler', life: 5000});
@@ -123,10 +131,6 @@ async function submitlogin() {
 </script>
 
 <style scoped>
-.fs-small {
-  font-size: 0.875rem;
-}
-
 .inputTextWidth {
   width: 100%;
 }

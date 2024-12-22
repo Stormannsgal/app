@@ -11,6 +11,7 @@ export default defineConfig({
   build: {
     outDir: 'public',
     sourcemap: 'hidden',
+    emptyOutDir: false,
   },
   publicDir: 'assets',
   plugins: [

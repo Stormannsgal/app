@@ -3,18 +3,11 @@ import router from "@/router";
 import {useTokenStore} from "@/stores/TokenStore.js";
 
 axios.defaults.baseURL = import.meta.env.VITE_API_URL;
-console.log(import.meta.env.VITE_API_URL)
 axios.defaults.withCredentials = true;
 
-const clientID = localStorage.getItem('uniqueID')
-
-if (clientID) {
-  axios.defaults.headers.common['x-ident'] = `${clientID}`
-}
-
 axios.interceptors.request.use((config) => {
-  const tokenStore = useTokenStore()
-  const accessToken = tokenStore.getAccessToken
+  const tokenStore = useTokenStore();
+  const accessToken = tokenStore.getAccessToken;
 
 
   if (accessToken !== null) {

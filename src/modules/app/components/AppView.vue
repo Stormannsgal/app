@@ -9,7 +9,7 @@ import {RouterView} from "vue-router";
       <NavigationHeadBar/>
     </div>
   </header>
-  <main class="p-1">
+  <main>
     <RouterView/>
   </main>
   <footer>

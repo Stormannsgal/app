@@ -3,26 +3,18 @@ import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 
 import '@/assets/reset.css'
-import '@/assets/toast.css';
 import '@/assets/main.css'
 
 import App from '@/App.vue'
 import router from '@/router'
-import '@/plugin/axios.js';
 import ToastService from 'primevue/toastservice';
 import Toast from 'primevue/toast';
+import '@/plugin/axios.js';
 
 import PrimeVue from 'primevue/config';
 import Lara from '@primevue/themes/lara'
 
 import 'primeicons/primeicons.css'
-import Button from 'primevue/button';
-import InputText from 'primevue/inputtext';
-import FloatLabel from 'primevue/floatlabel';
-import Checkbox from 'primevue/checkbox';
-import InputGroup from 'primevue/inputgroup';
-import InputGroupAddon from 'primevue/inputgroupaddon';
-import Message from 'primevue/message';
 import {definePreset} from "@primevue/themes";
 
 
@@ -75,16 +67,8 @@ app.use(PrimeVue, {
   }
 });
 
-app.component('Button', Button);
-app.component('InputText', InputText);
-app.component('FloatLabel', FloatLabel);
-app.component('Checkbox', Checkbox);
-app.component('InputGroup', InputGroup);
-app.component('InputGroupAddon', InputGroupAddon);
-app.component('Message', Message);
-app.component('Toast', Toast);
-
 app.use(createPinia())
 app.use(router)
 app.use(ToastService)
+app.component('Toast', Toast)
 app.mount('#app')

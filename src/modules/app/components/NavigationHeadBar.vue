@@ -51,7 +51,7 @@ const save = () => {
 };
 </script>
 
-<style>
+<style scoped>
 .nav-link:link, .nav-link:visited {
   font-size: 1.2rem;
   color: lavender;
